@@ -4,10 +4,21 @@
 
 using namespace std;
 
+int pow1(int b, int e, int mod)
+{
+	int result = 1;
+	for (int _e = 1;_e <= e;_e++)
+	{
+		result = (result*b) % mod;
+	}
+	return result;
+}
+
 int main() {
 	int p, q, e, n, f, d;
-	char letter, C;
-	
+	unsigned char letter, C;
+
+
 	cout << "Enter first simple number:" << endl;
 	cin >> p;
 	cout << "Enter second simple number:" << endl;
@@ -30,14 +41,15 @@ int main() {
 				}
 			}
 		}
+		break;
 	}
-	for (d = 1; !(d * e > f && (d * e) % f == 1); d++) {
+	for (d = 1;  (d * e) % f != 1; d++) {
 
 	}
 
-	C = (int)pow((letter - 96), e) % n;
+	C = pow1((letter - 96), e,n);
 	cout <<"Ciphered letter: "<< C << endl;
-	letter = ((int)pow(C, d) % n) + 96;
+	letter = pow1(C, d,n) + 96;
 	cout << "Deciphered letter: " << letter << endl;
 	_getch();
 	return 0;
